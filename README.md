@@ -2,18 +2,41 @@
 
 > 以 OpenClaw 為本體的個人化 AI 助理，專為研究者/建築專業人士設計
 
-**最新版本：** v3.0 | **基於：** OpenClaw v2026.3.24
+**最新版本：** v2026-03-30 | **基於：** OpenClaw v2026.3.24
 
 ---
 
-## 📜 版本歷史（時間分佈）
+## 📜 版本命名（時間分佈）
 
 | 版本 | 日期 | 主要內容 |
 |------|------|----------|
-| [v1.0](#v10-2026-03-30) | 2026-03-30 | 基礎設定（身份、用戶、AI個性）|
-| [v2.0](#v20-2026-03-30) | 2026-03-30 | 自定義技能 + 三層記憶 + 多人使用 |
-| [v3.0](#v30-2026-03-30) | 2026-03-30 | 桌面整合 + 極速啟動 + 進化系統 |
-| [v4.0](#v40-2026-03-30) | 2026-03-30 | Home Assistant 監控整合 |
+| v2026-03-30-0600 | 2026-03-30 | 基礎設定（身份、用戶、AI個性）|
+| v2026-03-30-0630 | 2026-03-30 | 自定義技能 + 三層記憶 + 多人使用 |
+| v2026-03-30-0700 | 2026-03-30 | 桌面整合 + 極速啟動 + 進化系統 |
+| v2026-03-30-0755 | 2026-03-30 | Home Assistant 監控 + AI 視覺整合 |
+
+---
+
+## 🚀 一鍵安裝
+
+```bash
+git clone https://github.com/ssiweifnag/pclaw.git && cd pclaw && bash pclaw-install.sh
+```
+
+---
+
+## 🔄 更新
+
+```bash
+# 完整更新
+bash pclaw-update.sh
+
+# 只檢查更新
+bash pclaw-update.sh --check
+
+# OpenClaw 自動更新
+openclaw update
+```
 
 ---
 
@@ -297,23 +320,25 @@ openclaw help
 ## 📁 檔案結構
 
 ```
-~/.openclaw/workspace/
+pclaw/
+├── pclaw-install.sh         ← 一鍵安裝腳本
+├── pclaw-update.sh         ← 更新腳本
+├── INSTALL_UPDATE_UI.md     ← 安裝更新 UI 說明
 ├── IDENTITY.md              ← 身份設定
 ├── USER.md                  ← 用戶資料
 ├── SOUL.md                  ← AI 個性
-├── HEARTBEAT.md             ← 自動化任務（v2.0+）
-├── MEMORY.md                ← 長期記憶（v2.0+）
-├── PCLAW_SETUP.md           ← 完整指南（v3.0+）
-├── PCLAW_EVOLUTION_GOVERNANCE.md  ← 進化治理（v3.0+）
-├── HA_MONITORING.md               ← HA 監控（v4.0+）
-├── memory/                  ← 每日日誌目錄
-│   └── YYYY-MM-DD.md
+├── HEARTBEAT.md             ← 自動化任務
+├── MEMORY.md                ← 長期記憶
+├── PCLAW_SETUP.md           ← 完整指南
+├── PCLAW_EVOLUTION_GOVERNANCE.md  ← 進化治理
+├── HA_MONITORING.md         ← HA 監控
 ├── skills/                  ← 自定義技能目錄
-│   ├── pclaw-ha-monitor/   ← HA 監控技能（v4.0）
-│   ├── pclaw-research-team/ ← 研究團隊技能（v4.0）
-│   ├── pclaw-ai-vision-monitor/ ← AI視覺監控技能（v4.0）
-│   ├── knowledge-organizer/ ← 知識庫整理技能
-│   └── paper-evolution/    ← 論文進化技能
+│   ├── pclaw-ha-monitor/
+│   ├── pclaw-research-team/
+│   ├── pclaw-ai-vision-monitor/
+│   ├── knowledge-organizer/
+│   └── paper-evolution/
+└── memory/                  ← 每日日誌（複製至 ~/.openclaw/workspace/）
 └── knowledge/               ← 知識庫（可選）
     └── ...
 ```
