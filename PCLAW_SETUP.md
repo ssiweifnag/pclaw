@@ -1,7 +1,7 @@
-# 🦞 Pclaw 設定指南 v2.0
+# 🦞 Pclaw 設定指南 v3.0
 
 _基於 OpenClaw + Panboo 個人化的 AI Agent_
-_參考：Qclaw、Desktop-Claw、Multi-Agent 框架_
+_參考：Qclaw（極速開發框架）、Desktop-Claw（桌面悬浮球）、Multi-Agent_
 
 ---
 
@@ -9,21 +9,20 @@ _參考：Qclaw、Desktop-Claw、Multi-Agent 框架_
 
 **Pclaw = Panboo's Personalized OpenClaw**
 
-以 OpenClaw 為本體，加上：
-- 個人身份設定
-- 專業領域技能包
-- 強化記憶系統
-- 多人使用架構
-- 手機對接（Telegram）
+以 OpenClaw 為本體，結合：
+- Qclaw 的**極速啟動**理念
+- Desktop-Claw 的**桌面悬浮球**概念
+- 強化**本地檔處理**能力
+- **持久化 Context** 記憶系統
 
-變成專屬的 AI 助理團隊。
+變成「**一觸即醒、無處不在**」的個人 AI 助理。
 
 ---
 
 ## 核心定位 🏷️
 
 ```
-🦞 Pclaw = 科研幫手 × 建築智能 × 每日情報士 × 論文利器
+🦞 Pclaw = 科研幫手 × 建築智能 × 每日情報士 × 論文利器 × 桌面AI小夥伴
 ```
 
 | 領域 | 擅長任務 |
@@ -31,232 +30,251 @@ _參考：Qclaw、Desktop-Claw、Multi-Agent 框架_
 | 📚 博士研究 | 文獻回顧、論文潤飾、數據分析、APA核查 |
 | 🏢 智慧建築 | BEMS、IAQ、節能方案、商業策略 |
 | 📰 每日情報 | AI 新聞、建築趨勢、科技動態 |
-| 🔧 系統管理 | OpenClaw 維護、技能疊代、自動化工作流 |
-| 📱 跨設備 | 手機對接、桌面隨時喚起、多人協作 |
+| 🔧 系統管理 | OpenClaw 維護、技能疊代、自動化 |
+| 📱 跨設備 | 手機/桌面 無縫喚醒 |
 
 ---
 
-## 🚀 快速設定（已完成）
+## 🚀 v3.0 新增：桌面整合（參考 Desktop-Claw）
 
-### ✅ 身份 + 用戶設定
-- `IDENTITY.md` — Pclaw 身份
-- `USER.md` — Panboo 用戶資料
-- `SOUL.md` — AI 個性
+### 1. Mac 桌面快捷啟動
 
-### ✅ 自動化任務
-- `HEARTBEAT.md` — 每日 cron jobs（02:00-23:00）
+#### 方式一：終端機 Alias（最簡）
+```bash
+# 加入 ~/.zshrc
+alias p="openclaw"
 
-### ✅ 記憶系統
-- `MEMORY.md` — 長期記憶
-- `memory/YYYY-MM-DD.md` — 每日日誌
-- `knowledge/` — 結構化知識庫
-
----
-
-## 🎯 v2.0 新增功能
-
-### 1. 自定義技能系統
-
-#### 技能模板（任何人可新增）
-
-```markdown
-# skills/你的技能名/SKILL.md
-
-## 你的技能名
-
-**用途：** 一句話說明這個技能做什麼
-**觸發關鍵字：** task-skill, another-trigger
-
-## 使用方式
-
-描述何時、如何使用這個技能
-
-## prompt 模板
-
-/你的技能名 [任務描述]
-
-## 輸出範例
-
-描述預期輸出長怎樣
+# 使用：輸入 p 即可喚醒
 ```
 
-#### 已建立的自定義技能
-
-| 技能名 | 用途 | 觸發關鍵字 |
-|--------|------|------------|
-| `paper-research` | 論文文獻調研 | 論文、文獻回顧 |
-| `bems-analysis` | BEMS 系統分析 | 智慧建築、節能 |
-| `daily-intel` | 每日情報收集 | 新聞、趨勢 |
-| `ha-monitor` | Home Assistant 監控 | 室內環境、CO₂ |
-
-#### 如何新增自訂技能
-
-1. 在 `~/.openclaw/workspace/skills/` 建立資料夾
-2. 寫入 `SKILL.md`（按上方模板）
-3. 在 HEARTBEAT.md 新增對應的定時任務
-4. 完成！
-
----
-
-### 2. 強化記憶系統
-
-#### 三層記憶架構
-
-```
-┌─────────────────────────────────────────────┐
-│  Layer 1: Working Context（當前對話）        │
-│  → OpenClaw 對話歷史、短期變數              │
-├─────────────────────────────────────────────┤
-│  Layer 2: Daily Memory（每日日誌）           │
-│  → memory/YYYY-MM-DD.md                    │
-│  → 當日重要事件、任務、發現                │
-├─────────────────────────────────────────────┤
-│  Layer 3: Long-term Memory（長期記憶）      │
-│  → MEMORY.md                               │
-│  → 人物、偏好、專案、關鍵決定              │
-└─────────────────────────────────────────────┘
+#### 方式二：Mac 快捷鍵（推薦）
+```bash
+# 設定方式：
+# 系統偏好設定 → 鍵盤 → 快捷鍵 → 應用程式
+# 新增捷徑 → openclaw
 ```
 
-#### 記憶召回觸發
+#### 方式三：Raycast / Alfred（極速）
+```bash
+# Raycast:
+# 安裝後 → 設定 → Extensions → Shell Commands
+# command: openclaw
+# keyword: p
 
-| 觸發條件 | 自動召回 |
-|---------|----------|
-| 提到人名 | → MEMORY.md 搜尋該人物 |
-| 提到專案 | → 該專案的過往記錄 |
-| 日期相關 | → memory/YYYY-MM-DD.md |
-| 偏好相關 | → USER.md + MEMORY.md |
+# Alfred:
+# Features → Terminal → 設定為 openclaw
+# keyword: p
+```
 
-#### 記憶寫入規則
+#### 方式四：桌面快捷方式
+```bash
+# 在桌面建立 alias script
+open ~/.local/share/applications/pclaw.desktop
+```
 
-| 情況 | 寫入位置 |
-|------|----------|
-| 重要決定 | MEMORY.md + 當日 memory/ |
-| 新人物認識 | MEMORY.md |
-| 任務進度 | memory/YYYY-MM-DD.md |
-| 偏好變化 | USER.md |
-| 臨時筆記 | 當日 memory/ |
+### 2. 悬浮球概念（Desktop-Claw 啟發）
 
----
+借鑒 Desktop-Claw 的「不干擾、隨時喚起」理念：
 
-### 3. 多人使用架構
-
-#### 用戶等級
-
-| 等級 | 權限 | 範例 |
+| 功能 | 說明 | 狀態 |
 |------|------|------|
-| 👤 Primary（主要）| 完整權限 | Panboo |
-| 👥 Family（家庭）| 基本協助、查詢 | 家人 |
-| 🤝 Guest（訪客）| 限定功能、有限記憶 | 同事、客戶 |
+| 後台運行 | 保持 Telegram 接收 | ✅ 已設定 |
+| 快速喚醒 | 輸入 p 或快捷鍵 | ✅ 可啟用 |
+| 極簡介面 | 只顯示對話，不占空間 | ✅ 即有此特性 |
+| 本地檔讀取 | 直接處理桌面/下載檔案 | ✅ 已有 tools |
 
-#### 多用戶設定檔
+### 3. 本地檔優先處理
 
-```
-~/.openclaw/workspace/users/
-├── _primary/          ← 主要用戶（Panboo）
-│   ├── USER.md        ← 完整資料
-│   └── MEMORY.md      ← 完整記憶
-├── _family/           ← 家庭成員（可選）
-│   └── USER.md        ← 簡化資料
-└── _guest/            ← 訪客（可選）
-    └── USER.md        ← 極簡資料
-```
-
-#### 多人隔離原則
-
-- ✅ Primary 用戶：完整存取所有檔案
-- ⚠️ Family 用戶：僅存取家庭共用知識庫
-- ⚠️ Guest 用戶：僅存取公開技能，不觸及 MEMORY.md
-
----
-
-### 4. 手機對接（Telegram）
-
-#### 現有整合 ✅
-
-| 功能 | 狀態 |
-|------|------|
-| Telegram 接收指令 | ✅ 已設定 |
-| 主動回報（heartbeat）| ✅ 已啟用 |
-| 檔案處理 | ✅ 支援 |
-| 多媒體（圖片/語音）| ✅ 支援 |
-
-#### 手機使用情境
-
-| 情境 | 操作 |
-|------|------|
-| 隨手問問題 | 直接發 Telegram 訊息 |
-| 查看每日情報 | 等待 07:00/21:00 主動推送 |
-| 緊急任務 | 發「緊急：XXX」觸發優先處理 |
-| 論文輔助 | 發文獻關鍵字 → 自動回傳摘要 |
-
-#### 桌面喚醒（Desktop-Claw 概念）
+參考 Qclaw 的本地檔處理能力：
 
 ```bash
-# Mac 捷徑：用 AppleScript 唤起 Pclaw
-osascript -e 'tell application "Terminal" to do script "openclaw"'
+# 自動識別常用路徑
+~/Desktop/          # 桌面檔案
+~/Downloads/         # 下載檔案  
+~/Documents/         # 文件
+~/Library/CloudStorage/  # Obsidian Vault
+
+# Pclaw 自動優先讀取這些位置
 ```
 
 ---
 
-## 📁 完整檔案結構 v2.0
+## ⚡ v3.0 新增：極速啟動（參考 Qclaw）
+
+### Qclaw 的核心理念：「定義任務 + 建立規則」
+
+Pclaw 映射：
+
+| Qclaw 開發框架 | Pclaw 實現 |
+|----------------|-------------|
+| 極速啟動 | `p` alias 一鍵喚醒 |
+| 角色自動演化 | Subagent 自動分工 |
+| 檔交接 | workspace 共享 |
+| 交叉審核 | 主 Agent 整合 |
+
+### 啟動速度對比
+
+| 方式 | 喚醒時間 | 適用場景 |
+|------|----------|----------|
+| Telegram | ~3秒 | 隨手問、手機 |
+| Terminal `p` | ~1秒 | 桌面、深度任務 |
+| Raycast `p` | <0.5秒 | 極速喚醒 |
+
+### 一鍵部署腳本
+
+```bash
+#!/bin/bash
+# pclaw-install.sh — 一鍵設定 Pclaw
+
+echo "🦞 安裝 Pclaw..."
+
+# 1. 複製設定檔
+cp IDENTITY.md ~/.openclaw/workspace/
+cp USER.md ~/.openclaw/workspace/
+cp SOUL.md ~/.openclaw/workspace/
+cp HEARTBEAT.md ~/.openclaw/workspace/
+
+# 2. 設定 Alias
+echo "alias p='openclaw'" >> ~/.zshrc
+
+# 3. 建立記憶目錄
+mkdir -p ~/.openclaw/workspace/memory/
+
+echo "✅ Pclaw 安裝完成！輸入 'p' 喚醒"
+```
+
+---
+
+## 🧠 v3.0 強化：持久化 Context
+
+### 對話自動歸檔（Desktop-Claw 啟發）
+
+| 歸檔時機 | 寫入位置 |
+|----------|----------|
+| 每日結束 | `memory/YYYY-MM-DD.md` |
+| 專案完成 | `knowledge/專案名/` |
+| 重要發現 | `MEMORY.md` + 當日 memory |
+
+### Context 內化（Qclaw 啟發）
+
+讓 Pclaw 越用越懂你：
+
+1. **每次對話結束**：自動摘要存入 MEMORY.md
+2. **偏好學習**：記錄你的回饋（喜歡/不喜歡）
+3. **專案連續性**：跨 session 記住進行中的任務
+
+### 記憶觸發關鍵字
+
+```
+當你說：         → Pclaw 自動召回：
+─────────────────────────────────
+「我的論文」      → MEMORY.md 中的論文專案
+「上次說的」      → 最近 memory/ 中的記錄
+「建築趨勢」      → knowledge/建築/ 最新資訊
+「文獻」          → 博士論文/ 相關檔案
+```
+
+---
+
+## 📁 完整檔案結構 v3.0
 
 ```
 ~/.openclaw/workspace/
-├── IDENTITY.md           ← 🦞 Pclaw 身份
-├── USER.md              ← 👤 Primary 用戶（Panboo）
-├── SOUL.md              ← 🎭 AI 個性
-├── HEARTBEAT.md         ← ⚡ 自動化任務
-├── MEMORY.md            ← 🧠 長期記憶
-├── PCLAW_SETUP.md       ← 📖 本指南
+├── IDENTITY.md              ← 🦞 Pclaw 身份
+├── USER.md                  ← 👤 Primary 用戶（Panboo）
+├── SOUL.md                  ← 🎭 AI 個性
+├── HEARTBEAT.md             ← ⚡ 自動化任務
+├── MEMORY.md                ← 🧠 長期記憶
+├── PCLAW_SETUP.md           ← 📖 本指南
 │
-├── memory/              ← 📅 每日日誌
+├── memory/                  ← 📅 每日日誌
 │   ├── 2026-03-30.md
 │   └── 2026-03-29.md
 │
-├── knowledge/           ← 📚 結構化知識庫
+├── knowledge/               ← 📚 結構化知識庫
 │   ├── 博士論文/
 │   ├── 軟體知識庫/
 │   ├── 硬體執事庫/
 │   └── news/
 │
-├── skills/             ← 🛠️ 自訂技能包
+├── skills/                 ← 🛠️ 自訂技能包
 │   ├── paper-research/
 │   ├── bemis-analysis/
 │   ├── daily-intel/
 │   └── ha-monitor/
 │
-├── scripts/             ← 🔧 自動化腳本
-│   └── bridge_to_obsidian.sh
+├── scripts/                 ← 🔧 自動化腳本
+│   ├── bridge_to_obsidian.sh
+│   └── pclaw-install.sh    ← ⚡ 一鍵安裝（新增）
 │
-└── users/               ← 👥 多用戶設定（可選）
+└── users/                   ← 👥 多用戶設定
     ├── _family/
     └── _guest/
 ```
 
 ---
 
-## 個人化程度對照 v2.0
+## 快速啟動對照
 
-| 層次 | 內容 | 狀態 |
-|------|------|------|
-| 🟢 身份 | 名字、定位、emoji | ✅ 已設定 |
-| 🟢 用戶 | 背景、專案、偏好 | ✅ 已設定 |
-| 🟢 技能 | 自訂 Skill 包 | ✅ 可新增 |
-| 🟢 記憶 | 三層記憶系統 | ✅ 已建立 |
-| 🟢 手機 | Telegram 對接 | ✅ 已啟用 |
-| 🟡 多人 | 多用戶架構 | ⚠️ 可擴展 |
-| 🔴 桌面 | Desktop-Claw 悬浮球 | 🔜 未來規劃 |
+| 場景 | 喚醒方式 | 時間 |
+|------|----------|------|
+| 📱 手機 | Telegram 發訊息 | ~3秒 |
+| 💻 桌面 | 終端機 `p` | ~1秒 |
+| ⌨️ 極速 | Raycast `p` | <0.5秒 |
 
 ---
 
-## 🔜 v3.0 規劃方向
+## 自訂技能（可擴展）
 
-| 功能 | 說明 | 優先度 |
-|------|------|--------|
-| Desktop-Claw 悬浮球 | Mac 桌面隨時喚起 | 🔜 |
-| 家庭成員設定 | 爸妈的簡化版 Pclaw | 🔜 |
-| 語音輸入/輸出 | 手機語音對話 | 🔜 |
-| Zotero 自動同步 | 文獻+PDF 自動歸檔 | 🔜 |
+### 現有技能
+| 技能 | 用途 |
+|------|------|
+| `paper-research` | 論文文獻調研 |
+| `bemis-analysis` | BEMS 系統分析 |
+| `daily-intel` | 每日情報收集 |
+| `ha-monitor` | HA 室內環境監控 |
+
+### 新增技能
+```bash
+# 在 skills/ 建立新資料夾
+mkdir -p skills/你的技能名
+# 寫入 SKILL.md 即可
+```
+
+---
+
+## v3.0 vs v2.0 差異
+
+| 功能 | v2.0 | v3.0 |
+|------|-------|------|
+| 桌面啟動 | ⚠️ 概念 | ✅ 完整方案 |
+| 極速喚醒 | ❌ | ✅ Raycast/Alfred |
+| 本地檔處理 | 基礎 | ✅ 優先路徑 |
+| Context 內化 | 概念 | ✅ 自動摘要 |
+| 一鍵部署 | ❌ | ✅ install.sh |
+
+---
+
+## 安裝方式
+
+###方式一：一鍵安裝（推薦）
+```bash
+git clone https://github.com/ssiweifnag/pclaw.git
+cd pclaw
+bash pclaw-install.sh
+```
+
+### 方式二：手動複製
+```bash
+cp IDENTITY.md ~/.openclaw/workspace/
+cp USER.md ~/.openclaw/workspace/
+# ... 其他檔案
+```
+
+### 方式三：Fork 後自訂
+1. Fork https://github.com/ssiweifnag/pclaw
+2. 修改 IDENTITY.md 和 USER.md
+3. 部署到你的 OpenClaw
 
 ---
 
@@ -264,15 +282,14 @@ osascript -e 'tell application "Terminal" to do script "openclaw"'
 
 | 問題 | 解法 |
 |------|------|
-| 想新增功能 | 在 `skills/` 新增 Skill |
-| 想改變風格 | 修改 `SOUL.md` |
-| 想記住新偏好 | 自然對話教我，或更新 `MEMORY.md` |
-| 想多人使用 | 在 `users/` 建立新資料夾 |
-| 想強化記憶 | 觸發 recall 或直接更新 MEMORY.md |
-| 想手機喚醒 | 已有 Telegram，隨時可用 |
+| `p` command not found | 將 `alias p='openclaw'` 加入 ~/.zshrc |
+| 想極速喚醒 | 安裝 Raycast，設定 keyword `p` |
+| 想桌面快捷鍵 | 系統偏好 → 鍵盤 → 快捷鍵 |
+| 想強化記憶 | 持續使用，Pclaw 會自動學習 |
 
 ---
 
-**版本：** v2.0（深度個人化版）
+**版本：** v3.0（桌面整合 + 極速啟動版）
 **更新日期：** 2026-03-30
+**參考：** Qclaw、Desktop-Claw、Multi-Agent 框架
 **基礎：** OpenClaw v2026.3.24 + MiniMax-M2.7
