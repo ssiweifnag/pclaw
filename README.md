@@ -13,6 +13,7 @@
 | [v1.0](#v10-2026-03-30) | 2026-03-30 | 基礎設定（身份、用戶、AI個性）|
 | [v2.0](#v20-2026-03-30) | 2026-03-30 | 自定義技能 + 三層記憶 + 多人使用 |
 | [v3.0](#v30-2026-03-30) | 2026-03-30 | 桌面整合 + 極速啟動 + 進化系統 |
+| [v4.0](#v40-2026-03-30) | 2026-03-30 | Home Assistant 監控整合 |
 
 ---
 
@@ -202,6 +203,65 @@ p
 
 ---
 
+## 📦 v4.0（2026-03-30）
+
+### Home Assistant 監控整合版
+
+**新增檔案：**
+- `HA_MONITORING.md` — Home Assistant 監控設定指南
+- `skills/pclaw-ha-monitor/SKILL.md` — HA 監控技能
+
+### v4.0 新功能
+
+| 功能 | 說明 |
+|------|------|
+| 🏠 即時監控 | CO₂、溫度、濕度、電力 |
+| ⏰ 定時回報 | 09:00/20:00 自動摘要 |
+| 🔔 異常警報 | 數值超標時通知 |
+| 📈 長期分析 | 每週/月數據統計 |
+
+### 監控參數
+
+| 參數 | 正常 | 警告 |
+|------|------|------|
+| CO₂ | < 800 ppm | > 1000 ppm |
+| 溫度 | 18-26°C | < 16°C / > 28°C |
+| 濕度 | 40-60% | < 30% / > 70% |
+| PM2.5 | < 35 μg/m³ | > 54 μg/m³ |
+
+### 安裝方式
+
+```bash
+# 複製 HA 監控相關檔案
+cp HA_MONITORING.md ~/.openclaw/workspace/
+cp -r skills/pclaw-ha-monitor/ ~/.openclaw/workspace/skills/
+
+# 設定 Home Assistant Token
+export HA_TOKEN="your_long_lived_token"
+
+# 測試連接
+curl -H "Authorization: Bearer $HA_TOKEN" \
+  http://YOUR_HA_IP:8123/api/states
+```
+
+### HEARTBEAT 整合
+
+```bash
+# 09:00 室內環境回報
+0 9 * * * openclaw heartbeat --task ha-morning
+
+# 20:00 晚間摘要
+0 20 * * * openclaw heartbeat --task ha-evening
+```
+
+### 適用場景
+
+- ✅ 有 Home Assistant 系統的用戶
+- ✅ 需要室內環境監控
+- ✅ 智慧建築研究（BEMS/IAQ）
+
+---
+
 ## 🔧 常用指令
 
 ```bash
@@ -241,10 +301,13 @@ openclaw help
 ├── MEMORY.md                ← 長期記憶（v2.0+）
 ├── PCLAW_SETUP.md           ← 完整指南（v3.0+）
 ├── PCLAW_EVOLUTION_GOVERNANCE.md  ← 進化治理（v3.0+）
+├── HA_MONITORING.md               ← HA 監控（v4.0+）
 ├── memory/                  ← 每日日誌目錄
 │   └── YYYY-MM-DD.md
 ├── skills/                  ← 自定義技能目錄
-│   └── your-skill/
+│   ├── pclaw-ha-monitor/   ← HA 監控技能（v4.0）
+│   ├── knowledge-organizer/ ← 知識庫整理技能
+│   └── paper-evolution/    ← 論文進化技能
 └── knowledge/               ← 知識庫（可選）
     └── ...
 ```
