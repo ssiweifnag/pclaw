@@ -205,11 +205,13 @@ p
 
 ## 📦 v4.0（2026-03-30）
 
-### Home Assistant 監控整合版
+### Home Assistant 監控 + AI 視覺整合版
 
 **新增檔案：**
 - `HA_MONITORING.md` — Home Assistant 監控設定指南
 - `skills/pclaw-ha-monitor/SKILL.md` — HA 監控技能
+- `skills/pclaw-research-team/SKILL.md` — 研究團隊技能
+- `skills/pclaw-ai-vision-monitor/SKILL.md` — AI 視覺監控技能
 
 ### v4.0 新功能
 
@@ -219,6 +221,8 @@ p
 | ⏰ 定時回報 | 09:00/20:00 自動摘要 |
 | 🔔 異常警報 | 數值超標時通知 |
 | 📈 長期分析 | 每週/月數據統計 |
+| 🎥 AI 視覺監控 | 人員偵測、VSaaS 模式 |
+| 🎓 研究團隊 | 多角色分工協調 |
 
 ### 監控參數
 
@@ -306,6 +310,8 @@ openclaw help
 │   └── YYYY-MM-DD.md
 ├── skills/                  ← 自定義技能目錄
 │   ├── pclaw-ha-monitor/   ← HA 監控技能（v4.0）
+│   ├── pclaw-research-team/ ← 研究團隊技能（v4.0）
+│   ├── pclaw-ai-vision-monitor/ ← AI視覺監控技能（v4.0）
 │   ├── knowledge-organizer/ ← 知識庫整理技能
 │   └── paper-evolution/    ← 論文進化技能
 └── knowledge/               ← 知識庫（可選）
