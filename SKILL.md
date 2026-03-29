@@ -1,8 +1,9 @@
-# 🦞 Pclaw - Personal OpenClaw Agent
+# 🦞 Pclaw v3.0 - Personal OpenClaw Agent
 
-**版本：** v2.0  
+**版本：** v3.0  
 **作者：** Panboo  
-**基於：** OpenClaw  
+**基於：** OpenClaw v2026.3.24  
+**參考：** Qclaw、Desktop-Claw、Multi-Agent 框架
 
 ---
 
@@ -10,90 +11,90 @@
 
 **Pclaw = Panboo's Personalized OpenClaw**
 
-以 OpenClaw 為本體的個人化 AI 助理技能包，專為研究者/建築專業人士設計。
+以 OpenClaw 為本體，結合：
+- Qclaw 的**極速啟動**理念
+- Desktop-Claw 的**桌面悬浮球**概念
+- **三層記憶系統**
+- **本地檔優先處理**
 
 ---
 
-## 功能
+## 核心功能
 
-### 身份設定
-- 自動載入 `IDENTITY.md` 中的身份設定
-- 定位：科研幫手 × 建築智能 × 每日情報士
+### ⚡ 極速啟動
+```bash
+# Mac 終端機
+alias p='openclaw'
 
-### 用戶資料
-- 自動載入 `USER.md` 中的用戶背景
-- 包括：專業領域、當前專案、興趣偏好
+# Raycast / Alfred
+keyword: p
+```
 
-### 自動化任務
-- 內建 HEARTBEAT.md 每日排程
-- 02:00 AI 新聞採集
-- 07:00 財經分析
-- 09:00 HA 室內環境回報
-- 21:00 Obsidian 同步
+### 🖥️ 桌面整合
+| 方式 | 喚醒時間 |
+|------|----------|
+| Telegram | ~3秒 |
+| `p` 終端機 | ~1秒 |
+| Raycast `p` | <0.5秒 |
 
-### 記憶系統
-- 三層記憶架構
-- 自動召回個人偏好
+### 🧠 三層記憶
+```
+Layer 1: 當前對話（Working Context）
+Layer 2: 每日日誌（memory/YYYY-MM-DD.md）
+Layer 3: 長期記憶（MEMORY.md）
+```
+
+### 📁 本地檔處理
+自動優先讀取：
+- `~/Desktop/`
+- `~/Downloads/`
+- `~/Documents/`
+- `~/Library/CloudStorage/`（Obsidian Vault）
+
+---
+
+## 擅長領域
+
+| 領域 | 任務 |
+|------|------|
+| 📚 博士研究 | 文獻、論文潤飾、數據分析 |
+| 🏢 智慧建築 | BEMS、IAQ、節能方案 |
+| 📰 每日情報 | AI 新聞、建築趨勢 |
+| 🔧 系統管理 | OpenClaw 維護、自動化 |
 
 ---
 
 ## 安裝方式
 
-### 方式一：複製檔案（推薦）
-
+### 一鍵安裝
 ```bash
-# 複製主要設定檔
-cp IDENTITY.md ~/.openclaw/workspace/
-cp USER.md ~/.openclaw/workspace/
-cp SOUL.md ~/.openclaw/workspace/
-cp HEARTBEAT.md ~/.openclaw/workspace/
-
-# 複製記憶範本
-cp -r memory/ ~/.openclaw/workspace/
-cp MEMORY.md ~/.openclaw/workspace/
+git clone https://github.com/ssiweifnag/pclaw.git
+cd pclaw
+bash pclaw-install.sh
 ```
 
-### 方式二：Fork 此 Repo
-
-1. Fork `pclaw` 倉庫
-2. 修改 `IDENTITY.md` 和 `USER.md` 為你的資料
-3. 設定 GitHub Codespaces 或本地 OpenClaw
-
----
-
-## 自訂修改
-
-### 修改身份
-編輯 `IDENTITY.md`：
-- 名字
-- 定位領域
-- Emoji 標誌
-
-### 修改用戶資料
-編輯 `USER.md`：
-- 背景專業
-- 當前專案
-- 興趣偏好
-
-### 新增技能
-在 `skills/` 目錄新增資料夾和 `SKILL.md`
+### 手動設定
+1. 複製 IDENTITY.md、USER.md、SOUL.md、HEARTBEAT.md 到 ~/.openclaw/workspace/
+2. 設定 `alias p='openclaw'` 加入 ~/.zshrc
+3. 完成！
 
 ---
 
-## 與其他技能的差異
+## 與其他方案的比較
 
-| 技能 | 擅長領域 |
-|------|----------|
-| Qclaw | 通用開發者助手 |
+| 方案 | 特色 |
+|------|------|
+| Qclaw | 極速開發框架 |
 | Desktop-Claw | macOS 桌面悬浮球 |
-| Pclaw | 研究者 + 智慧建築 |
+| **Pclaw** | **研究 + 建築 + 極速喚醒** |
 
 ---
 
-## 授權
+## License
 
 MIT License
 
 ---
 
 **最後更新：** 2026-03-30
+**版本：** v3.0
