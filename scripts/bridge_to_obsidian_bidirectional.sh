@@ -48,18 +48,20 @@ openclaw_to_obsidian() {
     backup_and_copy "$STAGING_DIR/Tools_Research.md" "$BRIDGE_DIR/Tools_Research.md" "工具研究"
     
     # 4. 博士論文研究（新增）
-    if [ -d "$KNOWLEDGE_DIR/博士論文" ]; then
-        mkdir -p "$BRIDGE_DIR/博士論文"
-        for f in "$KNOWLEDGE_DIR/博士論文"/*.md 2>/dev/null; do
+    phd_dir="$KNOWLEDGE_DIR/博士論文"
+    if [ -d "$phd_dir" ]; then
+        mkdir -p "$BRIDGE_DIR/phd_research"
+        for f in "$phd_dir"/*.md; do
             if [ -f "$f" ]; then
-                backup_and_copy "$f" "$BRIDGE_DIR/博士論文/" "博士論文"
+                backup_and_copy "$f" "$BRIDGE_DIR/phd_research/" "$(basename "$f")"
             fi
         done
     fi
     
     # 5. 每週研究報告（新增）
-    if [ -f "$KNOWLEDGE_DIR/研究計畫_建議實驗方向_2026-03-30.md" ]; then
-        backup_and_copy "$KNOWLEDGE_DIR/研究計畫_建議實驗方向_2026-03-30.md" "$BRIDGE_DIR/研究計畫.md" "研究計畫"
+    plan_file="$KNOWLEDGE_DIR/研究計畫_建議實驗方向_2026-03-30.md"
+    if [ -f "$plan_file" ]; then
+        backup_and_copy "$plan_file" "$BRIDGE_DIR/research_plan.md" "研究計畫"
     fi
     
     log "✅ OpenClaw → Obsidian 完成"
